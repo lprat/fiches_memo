@@ -271,7 +271,7 @@ L'information logon type (contenu dans l'évènement 4624/4625 sur le serveur ci
 |[Credential Manager store](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh994565(v%3Dws.11)#credential-manager-store)|Il s'agit du gestionnaire de mot de passe windows "Windows Vault" qui stock les mots de passe utilisés par l'utilisateur sur des sites web, applications, ...|plaintext password|Sans limite de durée|
 
 
-**Bonnes pratiques d'administration windows pour éviter le vol de ses secrets : **
+**Bonnes pratiques d'administration windows pour éviter le vol de ses secrets :**
 
  - Pas de compte de domaine à privilège avec la délégation d'activé
  - Un compte d'administration ne doit être utilisé que sur le poste de l'administrateur (poste durci en matière de sécurité : politique d'exécution, politique firewall local, chiffrement des disques, pas d'accès bureautique pour limiter la surface d'attaque, ...). La compromission d'un poste d'administration peu importe le type d'authentification utilisé (carte à puce, fido, ...) et les protections mises en place sur le SI (bastion, politique d'authentification, segmentation, ...) rend "compromettable" toutes les ressources administrées par ce poste (niveau, ex: tiers 1). Dans le même principe, un contrôleur de domaine compromis rend "compromettable" toutes les ressources utilisant ce moyen d'authentification (tous les niveaux tiers0/1/2 - sauvegarde, hyperviseur, machine, service, ...).
