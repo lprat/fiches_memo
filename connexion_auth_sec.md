@@ -272,6 +272,7 @@ L'information logon type (contenu dans l'évènement 4624/4625 sur le serveur ci
 
 
 **Bonnes pratiques d'administration windows pour éviter le vol de ses secrets : **
+
  - Pas de compte de domaine à privilège avec la délégation d'activé
  - Un compte d'administration ne doit être utilisé que sur le poste de l'administrateur (poste durci en matière de sécurité : politique d'exécution, politique firewall local, chiffrement des disques, pas d'accès bureautique pour limiter la surface d'attaque, ...). La compromission d'un poste d'administration peu importe le type d'authentification utilisé (carte à puce, fido, ...) et les protections mises en place sur le SI (bastion, politique d'authentification, segmentation, ...) rend "compromettable" toutes les ressources administrées par ce poste (niveau, ex: tiers 1). Dans le même principe, un contrôleur de domaine compromis rend "compromettable" toutes les ressources utilisant ce moyen d'authentification (tous les niveaux tiers0/1/2 - sauvegarde, hyperviseur, machine, service, ...).
  - Un compte d'administration ne doit jamais être utilisé en dehors du cadre d'administration. Concrètement, il ne doit jamais être utilisé pour accéder à des services comme sharepoint, webmail owa, ftp, ssh, ou tout autre protocole qui utilise un logon type diffèrent de 3.
