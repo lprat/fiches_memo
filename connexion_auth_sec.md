@@ -168,7 +168,7 @@ La méthode d'authentification est importante à choisir en fonction de ces beso
 Il est important de ne pas avoir un référentiel d'authentification unique pour tout un SI mais d'essayer à minima de séparer les activités suivantes:
   - Bureautique => on sera souvent sur de l'authentification basée sur un AD
   - Métier => il est important aussi d'avoir du SSO pour l'expérience utilisateur, on privilégiera un référentiel diffèrent et en fonction des données et du besoin de confidentialité on utilisera une authentification adaptée (forte ou non).
-  - Administration du SI => l'administration du SI est la base de la sécurité, a partir du moment où le référentiel de cette activité est compromise, tout le SI est compromis. Il est donc important d'utiliser une authentification forte avec une authentification centralisé pour l'administration du SI. L'utilisation de la rupture protocolaire permettra de pouvoir effectuer une surveillance de l'ensemble de l'administration en un point unique, permettant d'avoir une action de remédiation en ce point impactant immédiatement le SI.
+  - Administration du SI => l'administration du SI est la base de la sécurité, à partir du moment où le référentiel de cette activité est compromise, tout le SI est compromis. Il est donc important d'utiliser une authentification forte avec une authentification centralisé pour l'administration du SI. L'utilisation de la rupture protocolaire permettra de pouvoir effectuer une surveillance de l'ensemble de l'administration en un point unique, permettant d'avoir une action de remédiation en ce point impactant immédiatement le SI.
 
 Sur de très grand SI, on peut augmenter les zones par la combinaison de plusieurs critères d’homogénéité, parmi lesquels :
  - de criticité métier (ex. : haute, moyenne, basse) ;
@@ -196,11 +196,15 @@ Un administrateur peut disposer d’un poste d’administration unique pour l’
 
 ![image](https://user-images.githubusercontent.com/1132448/177760599-777214f7-37f6-446c-bf56-2913306dbe95.png)
 
+Toutes les informations ci-dessus sont issues de la documentation de l'ANSSI: https://www.ssi.gouv.fr/uploads/2018/04/anssi-guide-admin_securisee_si_v3-0.pdf
+
 #### Zone d'administration
 La zone d'administration contient les poste d'administration/outils d'administration, elle est isolée du reste du SI pour limiter les attaques vers cette zone et donc protéger les postes d'administration.
 Pour intégrer la zone d'administration privilégier le protocole i802.1x, prise réseau dédié dans une bureau sécurisé, accès VPN IPsec (pour arriver depuis l'externe).
 
 ![image](https://user-images.githubusercontent.com/1132448/177767140-cf16be7a-108b-4c49-a60b-28a959ede605.png)
+
+Toutes les informations ci-dessus sont issues de la documentation de l'ANSSI: https://www.ssi.gouv.fr/uploads/2018/04/anssi-guide-admin_securisee_si_v3-0.pdf
 
 ## Spécificité environnement Windows
 L'information logon type (contenu dans l'évènement 4624/4625 sur le serveur cible) permet d'identifier le type d'authentification réalisé et le risque d'avoir communiqué les identifiants en clair qui pourront être récupérable par une attaque sur la machine cible et rejoués.  
