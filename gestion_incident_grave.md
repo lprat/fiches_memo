@@ -6,6 +6,7 @@ Le CERT Santé a constaté que dans ce type d'incident, il était très souvent 
 
 Ainsi, il n’est pas nécessaire d’attendre les résultats des investigations avant de commencer ces travaux mais il est important de réaliser une extraction des preuves à conserver pour l’enquête judiciaire.
 
+## Sommaire
 <!--ts-->
    * [Confinement](#1---confinement)
    * [Retablir mes services vitaux](#2---r%C3%A9tablir-les-services-vitaux-encore-op%C3%A9rationnels-dans-un-mode-d%C3%A9grad%C3%A9)
