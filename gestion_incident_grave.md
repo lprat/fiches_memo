@@ -6,12 +6,12 @@ Le CERT Santé a constaté que dans ce type d'incident, il était très souvent 
 
 Ainsi, il n’est pas nécessaire d’attendre les résultats des investigations avant de commencer ces travaux mais il est important de réaliser une extraction des preuves à conserver pour l’enquête judiciaire.
 
-## Sommaire
+## Etapes
 <!--ts-->
-   * [Confinement](#1---confinement)
-   * [Retablir mes services vitaux](#2---r%C3%A9tablir-les-services-vitaux-encore-op%C3%A9rationnels-dans-un-mode-d%C3%A9grad%C3%A9)
-   * [Messagerie interne, Communication interne, Communication externe, Communication incident](#3---messagerie-interne-communication-interne-communication-externe-communication-incident)
-   * [Reconstruction](#4---reconstruction)
+   * [1 - Confinement](#1---confinement)
+   * [2 - Retablir mes services vitaux](#2---r%C3%A9tablir-les-services-vitaux-encore-op%C3%A9rationnels-dans-un-mode-d%C3%A9grad%C3%A9)
+   * [3 - Messagerie interne, Communication interne, Communication externe, Communication incident](#3---messagerie-interne-communication-interne-communication-externe-communication-incident)
+   * [4 - Reconstruction](#4---reconstruction)
      * [Modèles](#modèles)
      * [Ordre de reconstruction](#ordre-de-reconstruction)
      * [Cycle de reconstruction](#cycle-de-reconstruction)
