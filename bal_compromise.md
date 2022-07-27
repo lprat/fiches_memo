@@ -1,4 +1,4 @@
-# Procédure sur compromission d'une boite courriel
+# Procédure sur compromission d'une boite courriel/identifiant compromis
 ## Confinement
 Nous vous conseillons d'appliquer les actions de confinement suivantes :
   1. Désactiver le compte des utilisateurs compromis
