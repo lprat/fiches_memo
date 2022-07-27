@@ -36,18 +36,18 @@ Prérequis:  Le pare-feu d'interconnexion avec internet ne doit pas avoir été 
  
 ## 3 - Messagerie interne, Communication interne, Communication externe, Communication incident
 
-  1. Si la messagerie est interne (sur site) :  
-    - et que votre serveur MX est interne mais celui-ci n'a pas été compromis par l'incident alors laisser l'ouverture du flux exclusivement en entrée (attention interdiction pour le serveur de sortir vers internet, ainsi que distribuer vers le serveur de messagerie interne), adapter la rétention du MX, afin de limiter la perte de courriels ; Dans le cas où la messagerie n'a pas été compromise, alors il est possible selon le contexte de distribuer les courriels reçus à condition d'enlever toutes les pièces jointes.  
-    - et que votre serveur MX est interne mais celui-ci a été compromis par l'incident, alors voir pour externaliser le service jusqu'à résolution de l'incident (redirection MX sur votre DNS externe) ;  
-    - et que votre serveur MX est externe, alors contacter votre prestataire MX pour lui demander de mettre en place une rétention MX importante jusqu'à la réouverture de votre SI, afin de limiter la perte de courriels.  
-  2. Il est important de pouvoir communiquer en interne pour faciliter la gestion de l'incident. Il existe plusieurs solutions pour permettre cette communication, soit :  
-    - votre messagerie est externe, vous avez réinitialisé tous les comptes lors du confinement (potentiellement vous avez activé une authentification multi-facteurs) lors de l'étape de confinement, vous pouvez utiliser ce canal pour vos communications avec des smartphones (réseau GSM) ;
-    - votre messagerie est interne et celle-ci est toujours opérationnelle malgré l'incident, vous pouvez utiliser ce canal pour vos communications internes ;  
-    - votre messagerie est interne mais elle a été impactée et n'est plus opérationnelle. Vous pouvez utiliser avec des smartphones des plateformes en ligne comme "Tchap", "Slack", ... Si vous disposez d'un serveur linux opérationnel et non compromis, vous pouvez installer une solution interne à déploiement rapide: MailCow (https://mailcow.email/), MailU (https://github.com/Mailu/Mailu) ...  
-  3. Il est parfois important de pouvoir communiquer vers l’extérieur. Vous avez plusieurs solutions en fonction de votre architecture :  
-    - votre messagerie est externe, vous avez réinitialisé tous les mots de passe lors du confinement (de préférence, vous avez aussi activé une authentification multi-facteurs lors de l'étape de confinement), vous pouvez utiliser ce canal pour vos communications avec des smartphones (réseau GSM) ;  
-    - votre serveur de messagerie était interne, il est préférable de créer des boites temporaires à l'aide de prestations externes (prestataire spécialisé ou un service grand public: Protonmail, Gmail, ... selon vos contraintes).  
-  4. Il est important d'identifier un plan de communication par rapport à votre incident (pour l'interne, pour l’extérieur, proactif ou réactif).  
+1. Si la messagerie est interne (sur site) :  
+  * et que votre serveur MX est interne mais celui-ci n'a pas été compromis par l'incident alors laisser l'ouverture du flux exclusivement en entrée (attention interdiction pour le serveur de sortir vers internet, ainsi que distribuer vers le serveur de messagerie interne), adapter la rétention du MX, afin de limiter la perte de courriels ; Dans le cas où la messagerie n'a pas été compromise, alors il est possible selon le contexte de distribuer les courriels reçus à condition d'enlever toutes les pièces jointes.  
+  * et que votre serveur MX est interne mais celui-ci a été compromis par l'incident, alors voir pour externaliser le service jusqu'à résolution de l'incident (redirection MX sur votre DNS externe) ;  
+  * et que votre serveur MX est externe, alors contacter votre prestataire MX pour lui demander de mettre en place une rétention MX importante jusqu'à la réouverture de votre SI, afin de limiter la perte de courriels.  
+2. Il est important de pouvoir communiquer en interne pour faciliter la gestion de l'incident. Il existe plusieurs solutions pour permettre cette communication, soit :  
+  * votre messagerie est externe, vous avez réinitialisé tous les comptes lors du confinement (potentiellement vous avez activé une authentification multi-facteurs) lors de l'étape de confinement, vous pouvez utiliser ce canal pour vos communications avec des smartphones (réseau GSM) ;
+  * votre messagerie est interne et celle-ci est toujours opérationnelle malgré l'incident, vous pouvez utiliser ce canal pour vos communications internes ;  
+  * votre messagerie est interne mais elle a été impactée et n'est plus opérationnelle. Vous pouvez utiliser avec des smartphones des plateformes en ligne comme "Tchap", "Slack", ... Si vous disposez d'un serveur linux opérationnel et non compromis, vous pouvez installer une solution interne à déploiement rapide: MailCow (https://mailcow.email/), MailU (https://github.com/Mailu/Mailu) ...  
+3. Il est parfois important de pouvoir communiquer vers l’extérieur. Vous avez plusieurs solutions en fonction de votre architecture :  
+  * votre messagerie est externe, vous avez réinitialisé tous les mots de passe lors du confinement (de préférence, vous avez aussi activé une authentification multi-facteurs lors de l'étape de confinement), vous pouvez utiliser ce canal pour vos communications avec des smartphones (réseau GSM) ;  
+  * votre serveur de messagerie était interne, il est préférable de créer des boites temporaires à l'aide de prestations externes (prestataire spécialisé ou un service grand public: Protonmail, Gmail, ... selon vos contraintes).  
+4. Il est important d'identifier un plan de communication par rapport à votre incident (pour l'interne, pour l’extérieur, proactif ou réactif).  
  
  ## 4 - Reconstruction
  ### Modèles
@@ -71,31 +71,32 @@ Veuillez trouver un exemple de dépendances classiques:
 
 ### Cycle de reconstruction
 
-  1. Choix sur l'origine de l'équipement/machine/service à reconstruire selon l'ordre de dépendance (une option uniquement) :  
-    - Installation/Réinstallation de zero (from scratch)  
-    - Récupération d'une machine ou un équipement compromis (vérifier par un expert en sécurité) depuis une sauvegarde, VM, équipement ... Sur le SI infecté (compromis)  
-    - Récupération sur une machine ou un équipement compromis, des données encore viables qui ne sont pas dangereuses (pas de PE/fichier type webshell/configuration susceptible de contenir une modification malveillante ... À vérifier par un expert en sécurité) depuis une sauvegarde, VM, équipement ... Sur le SI infecté (compromis)  
-    - Récupération depuis une sauvegarde saine (interne, externe, point de restauration), nécessite d'avoir identifié avec l'investigation la date exacte du début de la compromission afin de choisir une sauvegarde saine.  
-  1.bis - La récupération d’éléments depuis le réseau infecté doivent être manipulés sur un réseau complètement isolé par un expert en sécurité qui vous transmettra les données sur un support "propre" autorisé à entrer en zone d'installation  
-  2. Installation dans une zone dédiée à l'installation (sans lien avec le SI compromis)  
-  3. HARDWARE  
-    a. Installation / Récupération hardware (selon le choix 1) : si récupération alors réinitialiser la configuration hardware (ex: BIOS, disques, ...)  
-    b. Durcissement hardware: Appliquer les mises à jour, activer les options de sécurité du BIOS (selon la sécurité physique du lieu), activer les options RAID adaptées, reconfigurer l'outil interne BIOS / firmware de gestion des serveurs à distance (ex: ILO HP) en le désactivant ou sécurisant son accès ...  
-      - Attention au choix du referentiel d'authentification et d'autorisation afin de ne pas utiliser un referentiel permettant le control sur le hardware avec un niveau de criticité inferieur à votre service, privileger une (authentification forte)[connexion_auth_sec.md]  
-  4. Système d'exploitation (OS)  
-    a. Installation / Récupération du système d'exploitation ou équipement: privilégier l'installation minimaliste (Windows core, Linux minimal)  
-    b. Durcissement du système d'exploitation / équipement : Respecter les guides de l'ANSSI, utiliser le support du CERT Santé (https://cybersante.github.io/CERT_Sante_Accompagnement/ en atteignant le niveau 3 minimum dans le scénario "bulle SI propre" et niveau 4 minimum pour "zéro trust").  
-      - Attention au choix du referentiel d'authentification et d'autorisation afin de ne pas utiliser un referentiel permettant le control sur le système avec un niveau de criticité inferieur à votre service, privileger une (authentification forte)[connexion_auth_sec.md]
-    c. Micro-segmentation des flux de dépendance "OS" : administration (ssh, rdp, wmi, psh, psexec), supervision, AV, ...  
-  5. Service/Rôle  
-    a. Installation / Récupération du service / rôle  
-    b. Durcissement du service / rôle : Respecter les guides de l'ANSSI, utiliser le support du CERT Santé (https://cybersante.github.io/CERT_Sante_Accompagnement/ en atteignant le niveau 3 minimum dans le scénario "bulle SI propre" et niveau 4 minimum pour "zéro trust"), utiliser des outils d'audit adaptés comme indiqué dans le support (ex: Pingcaslte/ORADAD pour l'AD, Nmap pour vérifier la surface d'exploitation ...)  
-      - Attention au choix du referentiel d'authentification et d'autorisation afin de ne pas utiliser un referentiel permettant le control sur le service avec un niveau de criticité inferieur à votre service, privileger une (authentification forte)[connexion_auth_sec.md]
-    c. Micro-segmentation des flux pour le service / rôle : si le service ne peut être appelé que par une quantité limitée d'adresses IP internes, alors filtrer en local (ex: service web dont les requêtes ne peuvent provenir que du reverse proxy)  
-  6. Filtrage interzone  
-    a. Zones internes : Ouverture des flux interzones internes (DMZ in, DMZ out, serveurs, admin, postes, ....) nécessaires au fonctionnement du service / rôle  
-    b. Zones d'interconnexion internet ou partenaires : Ouverture des flux d'interconnexion sécurisés entrants / sortants vers partenaire, internet ... Nécessaire au fonctionnement du service / rôle  
-  7. Déplacement du service installé sur le SI bulle ou zero trust  
+1. Choix sur l'origine de l'équipement/machine/service à reconstruire selon l'ordre de dépendance (une option uniquement) :
+  * Installation/Réinstallation de zero (from scratch)
+  * Récupération d'une machine ou un équipement compromis (vérifier par un expert en sécurité) depuis une sauvegarde, VM, équipement ... Sur le SI infecté (compromis)
+  * Récupération sur une machine ou un équipement compromis, des données encore viables qui ne sont pas dangereuses (pas de PE/fichier type webshell/configuration susceptible de contenir une modification malveillante ... À vérifier par un expert en sécurité) depuis une sauvegarde, VM, équipement ... Sur le SI infecté (compromis)
+  * Récupération depuis une sauvegarde saine (interne, externe, point de restauration), nécessite d'avoir identifié avec l'investigation la date exacte du début de la compromission afin de choisir une sauvegarde saine.
+1.bis - La récupération d’éléments depuis le réseau infecté doivent être manipulés sur un réseau complètement isolé par un expert en sécurité qui vous transmettra les données sur un support "propre" autorisé à entrer en zone d'installation  
+2. Installation dans une zone dédiée à l'installation (sans lien avec le SI compromis)  
+3. HARDWARE
+  * Installation / Récupération hardware (selon le choix 1) : si récupération alors réinitialiser la configuration hardware (ex: BIOS, disques, ...)
+  * Durcissement hardware: Appliquer les mises à jour, activer les options de sécurité du BIOS (selon la sécurité physique du lieu), activer les options RAID adaptées, reconfigurer l'outil interne BIOS / firmware de gestion des serveurs à distance (ex: ILO HP) en le désactivant ou sécurisant son accès ...
+    * Attention au choix du referentiel d'authentification et d'autorisation afin de ne pas utiliser un referentiel permettant le control sur le hardware avec un niveau de criticité inferieur à votre service, privileger une (authentification forte)[connexion_auth_sec.md]
+  * test
+4. Système d'exploitation (OS)  
+  * Installation / Récupération du système d'exploitation ou équipement: privilégier l'installation minimaliste (Windows core, Linux minimal)  
+  * Durcissement du système d'exploitation / équipement : Respecter les guides de l'ANSSI, utiliser le support du CERT Santé (https://cybersante.github.io/CERT_Sante_Accompagnement/ en atteignant le niveau 3 minimum dans le scénario "bulle SI propre" et niveau 4 minimum pour "zéro trust").  
+    * Attention au choix du referentiel d'authentification et d'autorisation afin de ne pas utiliser un referentiel permettant le control sur le système avec un niveau de criticité inferieur à votre service, privileger une (authentification forte)[connexion_auth_sec.md]  
+  * Micro-segmentation des flux de dépendance "OS" : administration (ssh, rdp, wmi, psh, psexec), supervision, AV, ...  
+5. Service/Rôle  
+  * Installation / Récupération du service / rôle  
+  * Durcissement du service / rôle : Respecter les guides de l'ANSSI, utiliser le support du CERT Santé (https://cybersante.github.io/CERT_Sante_Accompagnement/ en atteignant le niveau 3 minimum dans le scénario "bulle SI propre" et niveau 4 minimum pour "zéro trust"), utiliser des outils d'audit adaptés comme indiqué dans le support (ex: Pingcaslte/ORADAD pour l'AD, Nmap pour vérifier la surface d'exploitation ...)  
+    * Attention au choix du referentiel d'authentification et d'autorisation afin de ne pas utiliser un referentiel permettant le control sur le service avec un niveau de criticité inferieur à votre service, privileger une (authentification forte)[connexion_auth_sec.md]
+  * Micro-segmentation des flux pour le service / rôle : si le service ne peut être appelé que par une quantité limitée d'adresses IP internes, alors filtrer en local (ex: service web dont les requêtes ne peuvent provenir que du reverse proxy)  
+6. Filtrage interzone  
+  * Zones internes : Ouverture des flux interzones internes (DMZ in, DMZ out, serveurs, admin, postes, ....) nécessaires au fonctionnement du service / rôle  
+  * Zones d'interconnexion internet ou partenaires : Ouverture des flux d'interconnexion sécurisés entrants / sortants vers partenaire, internet ... Nécessaire au fonctionnement du service / rôle  
+7. Déplacement du service installé sur le SI bulle ou zero trust  
  
 ### Respect des procédures dans le temps
  
