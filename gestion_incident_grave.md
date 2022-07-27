@@ -58,8 +58,6 @@ Veuillez trouver un exemple de dépendances classiques:
 
 ### Cycle de reconstruction
 
-(**attention: **)
-
   1. Choix sur l'origine de l'équipement/machine/service à reconstruire selon l'ordre de dépendance (une option uniquement) : 
     - Installation/Réinstallation de zero (from scratch)
     - Récupération d'une machine ou un équipement compromis (vérifier par un expert en sécurité) depuis une sauvegarde, VM, équipement ... Sur le SI infecté (compromis)
