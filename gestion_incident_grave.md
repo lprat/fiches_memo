@@ -6,6 +6,18 @@ Le CERT Santé a constaté que dans ce type d'incident, il était très souvent 
 
 Ainsi, il n’est pas nécessaire d’attendre les résultats des investigations avant de commencer ces travaux mais il est important de réaliser une extraction des preuves à conserver pour l’enquête judiciaire.
 
+<!--ts-->
+   * [Confinement](#1---confinement)
+   * [Retablir mes services vitaux](#2---r%C3%A9tablir-les-services-vitaux-encore-op%C3%A9rationnels-dans-un-mode-d%C3%A9grad%C3%A9)
+   * [Messagerie interne, Communication interne, Communication externe, Communication incident](#3---messagerie-interne-communication-interne-communication-externe-communication-incident)
+   * [Reconstruction](#4---reconstruction)
+     * [Modèles](#modèles)
+     * [Ordre de reconstruction](#ordre-de-reconstruction)
+     * [Cycle de reconstruction](#cycle-de-reconstruction)
+     * [Respect des procédures dans le temps](#respect-des-procédures-dans-le-temps)
+     * [Surface d'attaque](#public)
+<!--te-->
+
 ## 1 - Confinement
 
   1. **Déconnecter vos sauvegardes** du réseau puis **vérifier leur état** afin de pouvoir garantir la possibilité de pouvoir récupérer les données de votre SI lors de la reconstruction. Attention, la déconnexion de la sauvegarde n'est pas la déconnexion du serveur de "contrôle" (ex Veeam) mais bien la baie SAN/NAS de stockage où se trouve les données de sauvegarde. Il n'est pas impossible qu'une tache planifiée malveillante existe sur un serveur de contrôle dont le but est de supprimer les sauvegardes à une date ou un événement spécifique (ex: coupure internet).
