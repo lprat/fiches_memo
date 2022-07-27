@@ -36,15 +36,15 @@ Prérequis:  Le pare-feu d'interconnexion avec internet ne doit pas avoir été 
  
 ## 3 - Messagerie interne, Communication interne, Communication externe, Communication incident
 
-  1. Si la messagerie est interne (sur site) :
+  1. Si la messagerie est interne (sur site) :  
     - et que votre serveur MX est interne mais celui-ci n'a pas été compromis par l'incident alors laisser l'ouverture du flux exclusivement en entrée (attention interdiction pour le serveur de sortir vers internet, ainsi que distribuer vers le serveur de messagerie interne), adapter la rétention du MX, afin de limiter la perte de courriels ; Dans le cas où la messagerie n'a pas été compromise, alors il est possible selon le contexte de distribuer les courriels reçus à condition d'enlever toutes les pièces jointes.
     - et que votre serveur MX est interne mais celui-ci a été compromis par l'incident, alors voir pour externaliser le service jusqu'à résolution de l'incident (redirection MX sur votre DNS externe) ;
     - et que votre serveur MX est externe, alors contacter votre prestataire MX pour lui demander de mettre en place une rétention MX importante jusqu'à la réouverture de votre SI, afin de limiter la perte de courriels.
-  2. Il est important de pouvoir communiquer en interne pour faciliter la gestion de l'incident. Il existe plusieurs solutions pour permettre cette communication, soit :
+  2. Il est important de pouvoir communiquer en interne pour faciliter la gestion de l'incident. Il existe plusieurs solutions pour permettre cette communication, soit :  
     - votre messagerie est externe, vous avez réinitialisé tous les comptes lors du confinement (potentiellement vous avez activé une authentification multi-facteurs) lors de l'étape de confinement, vous pouvez utiliser ce canal pour vos communications avec des smartphones (réseau GSM) ;
     - votre messagerie est interne et celle-ci est toujours opérationnelle malgré l'incident, vous pouvez utiliser ce canal pour vos communications internes ;
     - votre messagerie est interne mais elle a été impactée et n'est plus opérationnelle. Vous pouvez utiliser avec des smartphones des plateformes en ligne comme "Tchap", "Slack", ... Si vous disposez d'un serveur linux opérationnel et non compromis, vous pouvez installer une solution interne à déploiement rapide: MailCow (https://mailcow.email/), MailU (https://github.com/Mailu/Mailu) ..
-  3. Il est parfois important de pouvoir communiquer vers l’extérieur. Vous avez plusieurs solutions en fonction de votre architecture :
+  3. Il est parfois important de pouvoir communiquer vers l’extérieur. Vous avez plusieurs solutions en fonction de votre architecture :  
     - votre messagerie est externe, vous avez réinitialisé tous les mots de passe lors du confinement (de préférence, vous avez aussi activé une authentification multi-facteurs lors de l'étape de confinement), vous pouvez utiliser ce canal pour vos communications avec des smartphones (réseau GSM) ;
     - votre serveur de messagerie était interne, il est préférable de créer des boites temporaires à l'aide de prestations externes (prestataire spécialisé ou un service grand public: Protonmail, Gmail, ... selon vos contraintes).
   4. Il est important d'identifier un plan de communication par rapport à votre incident (pour l'interne, pour l’extérieur, proactif ou réactif).
