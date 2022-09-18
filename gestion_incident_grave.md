@@ -85,19 +85,23 @@ Veuillez trouver un exemple de dépendances classiques:
   * Installation / Récupération hardware (selon le choix 1) : si récupération alors réinitialiser la configuration hardware (ex: BIOS, disques, ...)
   * Durcissement hardware: Appliquer les mises à jour, activer les options de sécurité du BIOS (selon la sécurité physique du lieu), activer les options RAID adaptées, reconfigurer l'outil interne BIOS / firmware de gestion des serveurs à distance (ex: ILO HP) en le désactivant ou sécurisant son accès ...
     * Attention au choix du referentiel d'authentification et d'autorisation afin de ne pas utiliser un referentiel permettant le control sur le hardware avec un niveau de criticité inferieur à votre service, privileger une (authentification forte)[connexion_auth_sec.md]
+  * Mettre à jour la cartographie
 4. **Système d'exploitation** (OS)  
   * Installation / Récupération du système d'exploitation ou équipement: privilégier l'installation minimaliste (Windows core, Linux minimal)  
   * Durcissement du système d'exploitation / équipement : Respecter les guides de l'ANSSI, utiliser le support du CERT Santé (https://cybersante.github.io/CERT_Sante_Accompagnement/ en atteignant le niveau 3 minimum dans le scénario "bulle SI propre" et niveau 4 minimum pour "zéro trust").  
     * Attention au choix du referentiel d'authentification et d'autorisation afin de ne pas utiliser un referentiel permettant le control sur le système avec un niveau de criticité inferieur à votre service, privileger une (authentification forte)[connexion_auth_sec.md]  
   * Micro-segmentation des flux de dépendance "OS" : administration (ssh, rdp, wmi, psh, psexec), supervision, AV, ...  
+  * Mettre à jour la cartographie
 5. **Service/Rôle**
   * Installation / Récupération du service / rôle  
   * Durcissement du service / rôle : Respecter les guides de l'ANSSI, utiliser le support du CERT Santé (https://cybersante.github.io/CERT_Sante_Accompagnement/ en atteignant le niveau 3 minimum dans le scénario "bulle SI propre" et niveau 4 minimum pour "zéro trust"), utiliser des outils d'audit adaptés comme indiqué dans le support (ex: Pingcaslte/ORADAD pour l'AD, Nmap pour vérifier la surface d'exploitation ...)  
     * Attention au choix du referentiel d'authentification et d'autorisation afin de ne pas utiliser un referentiel permettant le control sur le service avec un niveau de criticité inferieur à votre service, privileger une (authentification forte)[connexion_auth_sec.md]
   * Micro-segmentation des flux pour le service / rôle : si le service ne peut être appelé que par une quantité limitée d'adresses IP internes, alors filtrer en local (ex: service web dont les requêtes ne peuvent provenir que du reverse proxy)  
+  * Mettre à jour la cartographie
 6. **Filtrage interzone**
   * Zones internes : Ouverture des flux interzones internes (DMZ in, DMZ out, serveurs, admin, postes, ....) nécessaires au fonctionnement du service / rôle  
   * Zones d'interconnexion internet ou partenaires : Ouverture des flux d'interconnexion sécurisés entrants / sortants vers partenaire, internet ... Nécessaire au fonctionnement du service / rôle  
+  * Mettre à jour la cartographie
 7. **Déplacement du service installé sur le SI bulle ou zero trust** 
  
 ### Respect des procédures dans le temps
