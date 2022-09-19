@@ -128,6 +128,9 @@ Ci-dessous un exemple de VLAN possibles:
 
 ### Cycle de reconstruction
 
+Télécharger [un exemple de fiche check list](https://form.jotform.com/222611416670348).  
+
+
 1. **Choix sur l'origine de l'équipement/machine/service à reconstruire selon l'ordre de dépendance** (une option uniquement) :
   * Installation/Réinstallation de zero (from scratch)
   * Récupération d'une machine ou un équipement compromis (vérifier par un expert en sécurité) depuis une sauvegarde, VM, équipement ... Sur le SI infecté (compromis)
@@ -139,21 +142,9 @@ Ci-dessous un exemple de VLAN possibles:
   * Installation / Récupération hardware (selon le choix 1) : si récupération alors réinitialiser la configuration hardware (ex: BIOS, UEFI, disques, ...)
   * Durcissement hardware:
     * Appliquer les mises à jour des firemwares (toujours télécharger sur le site officiel - vérifier les hashs)
-    * Activer les options de sécurité du BIOS/UEFI (selon la sécurité physique du lieu):
-      * mot de passe BIOS/UEFI. Placer les secrets dans votre keepass.
-      * Fixer l'ordre de boot
-      * Activer le "secure boot"
+    * Activer les options de sécurité du BIOS/UEFI (selon la sécurité physique du lieu)
     * Activer les options RAID adaptées (pour serveur)
-    * Dans le cadre d'un serveur, s'il possède une carte de gestion à distance (ex: ILO HP/Idrack dell/...), sécurer son accès:
-      * Placer la carte de gestion à distance dans un Vlan/segment dédié accessible uniquement aux équipements d'administration du SI (postes admin ou rebond ou bastion). Mettre à jour la matrice de flux.
-      * Désactiver les services de gestion de serveur à distance pour désactiver tous les protocoles non chiffrés (telnet, http, ...)
-      * Utiliser seulement une connexion chiffrée (ssh, https) pour accèder à la gestion distante
-      * Utiliser un referentiel d'authentification et d'autorisation basé sur un niveau équivalent à celui de l'hyperviseur et en utilisant (authentification forte)[connexion_auth_sec.md]. Mettre à jour la base d'accès dans la cartographie, si celui c'est n'est pas géré par un bastion. Placer les secrets dans votre keepass (certificat, clé privé/public, mot de passe).
-      * Configurer le serveur syslog distant permettant d'avoir les traces centralisées
-      * Si la salle serveurs est dans vos locaux, alors il peut etre interessant de débrancher le cable réseau par défaut (attention à le fixer proche du port et noter sur le cable le nom du serveur) et de le brancher à la demande en cas de besoin
-      * A defaut, de l'utiliser débrancher le cable réseau de la carte de gestion distante et désactiver le service dans le BIOS
-      * Si un referentiel de durcissement ecrit par le constructeur existe alors respecter ses recommandations tout en restant en accord avec les indications présentes ci-dessus.
-  * Mettre à jour la cartographie
+    * Dans le cadre d'un serveur, s'il possède une carte de gestion à distance (ex: ILO HP/Idrack dell/...), sécurer son accès
   * Faire controler l'application des mesures ci-dessus par un tiers ayant les qualifications nécessaires en sécurité
 4. **Système d'exploitation** (OS)  
   * Installation / Récupération du système d'exploitation ou équipement: privilégier l'installation minimaliste (Windows core, Linux minimal) 
@@ -165,46 +156,17 @@ Ci-dessous un exemple de VLAN possibles:
     * Interdire le montage automatique (CD/DVD/USB/...)
   * Dans le cadre d'un poste de travail ou admin "portable":
     * Si l'utilisateur à un disque dur externe, le chiffrer aussi (même dans le cadre d'un poste fixe)
-  * Durcissement du système d'exploitation / équipement (ref.: https://cybersante.github.io/CERT_Sante_Accompagnement/) :
-    * Placer le serveur ou le poste dans le VLAN approprié, puis mettre à jour la matrice de flux
-    * Mise à jour des correctifs de sécurité du système d'exploitation et activer si possible la mise à jour automatique sur les correctifs de sécurité (a défaut, activer un script ou un mecanisme de supervision pour être averti en cas de mise à disposition d'un correctif de sécurité).
-    * Mettre en place une solution de sauvegarde du serveur (soit en passant par l'hyperviseur, soit par un agent ou un mecanisme local).
-    * Choix du referentiel d'authentification et d'autorisation afin de ne pas utiliser un referentiel permettant le control sur le système avec un niveau de criticité inferieur à votre service, privileger une (authentification forte)[connexion_auth_sec.md]  . Mettre à jour la base d'accès dans la cartographie, si celui c'est n'est pas géré par un bastion. Placer les secrets dans votre keepass (certificat, clé privé/public, mot de passe).
-    * Désinstallation ou désactivation des services/applications non nécessaires (ex: wmi, winrm, psexec, vnc, navigateur, ...)
-    * Installation et/ou configuration des services "socles" (supervision, syslog, dns, antivirus, ...) strictement nécessaires en prennant en compte le risque des dépendances de controle. Mettre à jour la cartographie lié aux dépendances. Veiller à ne pas utiliser le compte root/administrateur quand cela est possible et limiter les droits de l'application/service sur le système au juste nécessaire.
-    * Adopter les bonnes pratiques d'administration pour limiter le vol d'identifiants dans le cadre de windows, et passer par un bastion avec authentification forte dans le cadre d'un serveur linux ou windows hors domaine
-    * Filtrer l'accès à internet en fonction du role de la machine au strict nécessaire avec passage par un proxy (interdire les flux de prise en main à distance de type Teamviewer/AnyDesk).
-    * Si possible activer les bonnes pratiques de durcissement pour votre système d'exploitation (CIS/STIG)
-    * Si possible interdire l'utilisation de protocole faible (LLMNR/NBT-NS/SMBv1/...)
-    * Activer les traces systèmes importantes (windows event 4688 / linux auditd) et centraliser les journaux
+  * Durcissement du système d'exploitation / équipement selon [la check list](https://form.jotform.com/222611416670348) basée sur https://cybersante.github.io/CERT_Sante_Accompagnement/
   * Micro-segmentation des flux de dépendance "OS" : administration (ssh, rdp, wmi, psh, psexec), supervision, AV, ...  Mettre à jour la matrice de flux.
-  * Mettre à jour la cartographie
   * Faire controler l'application des mesures ci-dessus par un tiers ayant les qualifications nécessaires en sécurité
 5. **Service/Rôle** (serveur)
   * Installation / Récupération du service / rôle  
     * Si possible privilégier l'utilisation d'installation automatique du service (hors données persistantes) par ansible / conteneur en maitrisant la partie secret pour qu'elle ne soit pas présente dans un dépot.
-  * Durcissement du service / rôle (ref.: https://cybersante.github.io/CERT_Sante_Accompagnement/) : 
-    * Mise à jour des correctifs de sécurité pour le service (et de ces dépendances dans le système) et activer si possible la mise à jour automatique sur les correctifs de sécurité (a défaut, activer un script ou un mecanisme de supervision pour être averti en cas de mise à disposition d'un correctif de sécurité).
-    * Mettre en place une solution de sauvegarde du service (soit en passant par l'hyperviseur, soit par un agent ou un mecanisme local) afin de sauvegarder les données importantes.
-    * Choix du referentiel d'authentification et d'autorisation en fonction du service (données, controle sur le SI,...) afin de ne pas utiliser un referentiel generant un risque de dependance faible sur les éléments utilisant ce service, privileger une (authentification forte)[connexion_auth_sec.md]. Mettre à jour la base d'accès dans la cartographie, si celui c'est n'est pas géré par un bastion. Placer les secrets dans votre keepass (certificat, clé privé/public, mot de passe).
-    * Désactivation des options du service non nécessaires
-    * Limiter les droits de lancement du service (ne pas utiliser "root/administrateur"), si possible utiliser un containeur et en fonction du risque utiliser un conteneur comme gvisor. De plus, si possible utiliser un profil secomp et/ou apparmor.
-    * Si possible interdire/désactiver l'utilisation de protocole faible par le service (ex: http)
-    * Si le service enrolle des agents alors verifier que la configuration permette de controler correctement l'identité/l'authentification des agents à enroller
-    * Si le service utilise des agents, alors l'agent ne doit pas avoir de mot de passe identique à celui du service. L'agent ne doit pas avoir accèder aux données d'un autres agents (sauf cas spécifique). Un agent ne doit pas pouvoir prendre le controle du service.
-    * Installation et/ou configuration des services "socles" (supervision, syslog, ...) strictement nécessaires en prennant en compte le risque des dépendances de controle. Mettre à jour la cartographie lié aux dépendances. Veiller à ne pas utiliser le compte root/administrateur quand cela est possible et limiter les droits de l'application/service sur le système au juste nécessaire.
-    * Filtrer l'accès à internet en fonction du besoin du service au strict nécessaire avec passage par un proxy (interdire les flux de prise en main à distance de type Teamviewer/AnyDesk).
-    * Activer les traces importantes (authentification) et centraliser les journaux
-    * Activer les bonnes pratiques de durcissement pour votre service (CIS/STIG/guide de durcissement de l'editeur)
-    * Faire auditer le service ou utiliser des outils d'audit adaptés (ex: Pingcaslte/ORADAD pour l'AD, Nmap pour vérifier la surface d'exploitation ...) 
-  * Micro-segmentation des flux pour le service / rôle : si le service ne peut être appelé que par une quantité limitée d'adresses IP internes, alors filtrer en local (ex: service web dont les requêtes ne peuvent provenir que du reverse proxy)  
-  * Micro-segmentation des flux pour le service / rôle partie administration: si le service dispose d'une interface d'administration alors filtrer l'accès pour que seul l'administrateur puisse accèder à l'interface. 
-  * Mettre à jour la cartographie
+  * Durcissement du service / rôle selon [la check list](https://form.jotform.com/222611416670348) basée sur https://cybersante.github.io/CERT_Sante_Accompagnement/
   * Faire controler l'application des mesures ci-dessus par un tiers ayant les qualifications nécessaires en sécurité
 6. **Filtrage interzone**
   * Zones internes : Ouverture des flux interzones internes (DMZ in, DMZ out, serveurs, admin, postes, ....) nécessaires au fonctionnement du service / rôle  
   * Zones d'interconnexion internet ou partenaires : Ouverture des flux d'interconnexion sécurisés entrants / sortants vers partenaire, internet ... Nécessaire au fonctionnement du service / rôle  
-  * Mettre à jour la cartographie
   * Faire controler l'application des mesures ci-dessus par un tiers ayant les qualifications nécessaires en sécurité
 7. **Déplacement du service installé sur le SI bulle ou zero trust** 
  
@@ -219,6 +181,11 @@ La sauvegarde est une partie critique du SI, elle contient toutes les données d
 #### Spécificité de l'hyperviseur
 Le durcissement de l'hyperviseur doit être vu comme un service. Il est important que seul les administrateurs du SI est accès à la console d'administration.  
 Dans le cadre où un utilisateur spécifique à le droit d'administrer un serveur sur l'hyperviseur, il est important de ne lui donner que des droits sur ce serveur spécifique. De plus, cette utilisateur devra respecter l'utilisation d'une authentification forte.
+
+#### Spécificité du controleur de domaine
+L'Active directory est souvent la base de l'authentification et de la gestion de configuration du parc bureautique. Il s'agit d'un brique très importante pour garantir la sécurité du réseau de bureautique mais aussi très complexe.  
+Lors de la compromission d'un domaine AD, il est important de realiser une operation de "bascule" qui à pour but d'enlever toutes persistances de l'attaquant que cela soit sur le système d'exploitation ou dans la partie AD.   
+Cette operation doit être realisée par des personnes formées à cette methode et certifiées (PASSI / PRIS).  
 
 #### Spécificité du poste de travail
 Ces préconisations ne sont pas pour les postes d'admin qui n'ont pas accès à internet (passage par la machine virtuelle).  
