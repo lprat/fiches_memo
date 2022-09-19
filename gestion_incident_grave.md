@@ -124,6 +124,8 @@ Ci-dessous un exemple de VLAN possibles:
  |Postes de travail|Permet de les identifier pour limiter leurs accès dans le SI|
  |Prestataires|Limiter l'accès pour les prestataires au bastion prestataire ou serveur dédié|
 
+**Utiliser de préférence un langage abstrait pour la creation de votre matrice comme "caprica".**
+
 ### Cycle de reconstruction
 
 1. **Choix sur l'origine de l'équipement/machine/service à reconstruire selon l'ordre de dépendance** (une option uniquement) :
