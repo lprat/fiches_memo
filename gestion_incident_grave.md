@@ -59,14 +59,14 @@ Prérequis:  Le pare-feu d'interconnexion avec internet ne doit pas avoir été 
  ### Modèles
  |Nom|Description|Avantages|Inconvénients|
  |------|------|------|-----|
- |"zéro trust"|consiste à réinstaller dans une zone sécurisée d'installation chaque équipement/machine (selon un ordre établi de dépendance), les durcir afin de sécuriser toute sa surface d'exploitation possible, puis le remettre dans le SI compromis au fur et à mesure avec la certitude qu'il ne pourra plus être compromis.| On réinstalle au fur et à mesure le SI sans avoir besoin de nombreux serveurs en réserve (potentiellement nécessaire pour la partie hyperviseur et sauvegarde). On simplifie l'organisation car il n'y a pas de problématique liée à la possession de services dans des zones différentes demandant d'avoir plusieurs postes par personne (sur chaque SI propre ou infecté).|Nécessite une expertise en sécurité importante et du temps pour que chaque flux soit maitrisé (micro segmentation).|
+ |"zéro trust"|consiste à réinstaller dans une zone sécurisée d'installation chaque équipement/machine (selon un ordre établi de dépendance), les durcir afin de sécuriser toute sa surface d'exploitation possible, puis le remettre dans le SI compromis mais sur des VLAN avec ACL (où seul des machines assainies/propres seront présentes) au fur et à mesure avec la certitude qu'il ne pourra plus être compromis.| On réinstalle au fur et à mesure le SI sans avoir besoin de nombreux serveurs en réserve (potentiellement nécessaire pour la partie hyperviseur et sauvegarde). On simplifie l'organisation car il n'y a pas de problématique liée à la possession de services dans des zones différentes demandant d'avoir plusieurs postes par personne (sur chaque SI propre ou infecté).|Nécessite une expertise en sécurité importante et du temps pour que chaque flux soit maitrisé (micro segmentation).|
  |"Bulle propre"|consiste à créer un nouveau SI séparé de l'ancien compromis (sans aucune possibilité de discussion entre les deux).|Nécessite moins d'expertise technique.|Cette technique oblige à avoir des serveurs/équipements/postes en réserve (proche du double) afin de continuer à faire fonctionner l'ancien tout en créant le nouveau SI. Cela veut dire aussi, que certains services seront sur le nouveau SI pendant que d'autres seront encore sur l'ancien, cela nécessite une organisation importante.|
  
 ### Ordre de reconstruction
 Il est important de reconstruire un SI selon un ordre bien défini (dépendance). La cartographie du SI devrait pouvoir permettre d'identifier les dépendances.  
 Veuillez trouver un exemple de dépendances classiques:
  1. Postes administrateurs dédiés à l'administration (avec Keepass/certificat) qui permettront la réinstallation du nouveau SI (poste durci, sans bureautique, sans dependance de controle par un niveau inferieur => hors AD ?). Possibilité d'installer une machine virtuelle pour avoir un poste bureautique.
- 2. Firewall et routeur pour créer la zone d'installation/durcissement 
+ 2. Firewall et routeur pour créer les zones "installation/durcissement" ainsi que les nouveaux VLAN avec ACL pour les machines assainies
  4. Hyperviseurs, serveurs physiques, baies de stockage
  5. Services socles informatiques vitaux : sauvegarde, supervision, DNS, ...
  6. Services socles informatiques sécurité : bastion, serveurs d'authentification et d'autorisation (IAM, AD, ...), antivirus, serveurs de mise à jour, serveur IGC/PKI, journalisation centrale, proxy sortant, reverse proxy, ...
@@ -137,8 +137,9 @@ Télécharger [un exemple de fiche check list](https://form.jotform.com/22261141
   * Récupération sur une machine ou un équipement compromis, des données encore viables qui ne sont pas dangereuses (pas de PE/fichier type webshell/configuration susceptible de contenir une modification malveillante ... À vérifier par un expert en sécurité) depuis une sauvegarde, VM, équipement ... Sur le SI infecté (compromis)
   * Récupération depuis une sauvegarde saine (interne, externe, point de restauration), nécessite d'avoir identifié avec l'investigation la date exacte du début de la compromission afin de choisir une sauvegarde saine.
 1.bis - **La récupération d’éléments depuis le réseau infecté** doivent être manipulés sur un réseau complètement isolé par un expert en sécurité qui vous transmettra les données sur un support "propre" autorisé à entrer en zone d'installation  
-2. **Installation dans une zone dédiée à l'installation** (sans lien avec le SI compromis)  
-3. **HARDWARE**
+2. **Installation dans une zone dédiée à l'installation** (sans lien avec le SI compromis)
+  * Rappel important: tous les secrets doivent changer à chaque installation, sur les secrets de type "mot de passe" une politique forte doit être appliquée, sur la partie certificat il faut révoquer les anciens certificat, ...   
+4. **HARDWARE**
   * Installation / Récupération hardware (selon le choix 1) : si récupération alors réinitialiser la configuration hardware (ex: BIOS, UEFI, disques, ...)
   * Durcissement hardware:
     * Appliquer les mises à jour des firemwares (toujours télécharger sur le site officiel - vérifier les hashs)
@@ -146,7 +147,7 @@ Télécharger [un exemple de fiche check list](https://form.jotform.com/22261141
     * Activer les options RAID adaptées (pour serveur)
     * Dans le cadre d'un serveur, s'il possède une carte de gestion à distance (ex: ILO HP/Idrack dell/...), sécurer son accès
   * Faire controler l'application des mesures ci-dessus par un tiers ayant les qualifications nécessaires en sécurité
-4. **Système d'exploitation** (OS)  
+5. **Système d'exploitation** (OS)  
   * Installation / Récupération du système d'exploitation ou équipement: privilégier l'installation minimaliste (Windows core, Linux minimal) 
     * Il est possible de mettre en place des mécanismes pour automatiser la création de VM sécurisée selon votre politique, car globalement, il s'agit d'un socle qui change peut entre deux serveurs (seulement la RAM/CPU/Disques). Ex: terraform/Cobbler + ansible
   * Dans le cadre d'un serveur dans un data center externalisé ou dans une salle serveur mal sécurisée:
@@ -159,16 +160,16 @@ Télécharger [un exemple de fiche check list](https://form.jotform.com/22261141
   * Durcissement du système d'exploitation / équipement selon [la check list](https://form.jotform.com/222611416670348) basée sur https://cybersante.github.io/CERT_Sante_Accompagnement/
   * Micro-segmentation des flux de dépendance "OS" : administration (ssh, rdp, wmi, psh, psexec), supervision, AV, ...  Mettre à jour la matrice de flux.
   * Faire controler l'application des mesures ci-dessus par un tiers ayant les qualifications nécessaires en sécurité
-5. **Service/Rôle** (serveur)
+6. **Service/Rôle** (serveur)
   * Installation / Récupération du service / rôle  
     * Si possible privilégier l'utilisation d'installation automatique du service (hors données persistantes) par ansible / conteneur en maitrisant la partie secret pour qu'elle ne soit pas présente dans un dépot.
   * Durcissement du service / rôle selon [la check list](https://form.jotform.com/222611416670348) basée sur https://cybersante.github.io/CERT_Sante_Accompagnement/
   * Faire controler l'application des mesures ci-dessus par un tiers ayant les qualifications nécessaires en sécurité
-6. **Filtrage interzone**
+7. **Filtrage interzone**
   * Zones internes : Ouverture des flux interzones internes (DMZ in, DMZ out, serveurs, admin, postes, ....) nécessaires au fonctionnement du service / rôle  
   * Zones d'interconnexion internet ou partenaires : Ouverture des flux d'interconnexion sécurisés entrants / sortants vers partenaire, internet ... Nécessaire au fonctionnement du service / rôle  
   * Faire controler l'application des mesures ci-dessus par un tiers ayant les qualifications nécessaires en sécurité
-7. **Déplacement du service installé sur le SI bulle ou zero trust** 
+8. **Déplacement du service installé sur le SI bulle ou zero trust** 
  
 
 #### Spécificité du serveur de sauvegarde
