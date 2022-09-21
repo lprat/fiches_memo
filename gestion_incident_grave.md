@@ -169,9 +169,9 @@ Télécharger [un exemple de fiche check list](https://form.jotform.com/22261141
   * Zones internes : Ouverture des flux interzones internes (DMZ in, DMZ out, serveurs, admin, postes, ....) nécessaires au fonctionnement du service / rôle  
   * Zones d'interconnexion internet ou partenaires : Ouverture des flux d'interconnexion sécurisés entrants / sortants vers partenaire, internet ... Nécessaire au fonctionnement du service / rôle  
   * Faire controler l'application des mesures ci-dessus par un tiers ayant les qualifications nécessaires en sécurité
-8. **Déplacement du service installé sur le SI bulle ou zero trust** 
+8. **Déplacement du service installé sur le SI bulle ou zero trust**
+  * Dans le cadre du Zero trust deplacer la machine dans un VLAN crée avec ACL où il n'y a que des machines propres/assainies (pas de melange dans un VLAN ancien entre machines "propres" et "sales")
  
-
 #### Spécificité du serveur de sauvegarde
 La sauvegarde est une partie critique du SI, elle contient toutes les données du SI dont ses secrets, il est donc important de respecter des règles spécifiques:
   - Utiliser de préférence un référentiel d'authentification et d'autorisation spécifique
