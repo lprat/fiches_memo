@@ -96,9 +96,9 @@ Les règles sur la partie réseau à respecter:
   * Limiter l'utilisation de port en mode "trunk" car si le port vient à être controlé par un attaquant alors il pourra accèder à tous vos VLANs.
   * Sur un poste d'admin avec une machine virtuelle bureautique, il est préférable d'avoir deux cartes réseaux, une pour l'hote admin sur le VLAN admin et une pour la machine virtuelle bureautique sur le VLAN bureautique.  
   * S'il n'est pas possible d'activer un firewall local (micro segementation) sur une machine critique/importante, alors il sera préférable de la mettre dans une zone (vlan) seule pour limiter le risque de latéralisation à cause d'un serveur compromis dans la même zone (vlan).
-  * Penser à désactiver les ports non utilisé
-  * Activer l'option "port security" sur les ports (reduira le risque d'usurpation par adresse MAC ainsi que des postes qui virtualiserait des machines sans autorisation).
-  * Activer le DHCP Snooping (ainsi que l'option 82 du le DHCP) pour limiter le risque d'usurpation de DHCP et identifier par le DHCP le port de connexion des postes de travail
+  * Penser à désactiver les ports non utilisés
+  * Activer l'option "port security" sur les ports (réduira le risque d'usurpation par adresse MAC ainsi que des postes qui virtualiserait des machines sans autorisation).
+  * Activer le DHCP Snooping (ainsi que l'option 82 dans le DHCP) pour limiter le risque d'usurpation de DHCP et identifier par dans les logs du DHCP le port de connexion physique du client dhcp
   * Activer l'ARP Inspection pour limiter l'usurpation d'adresse IP
   * Si une prise réseau est dans un endroit à risque (passage de public, ...) alors il peut etre important d'activer l'authentification par i802.1x 
   
