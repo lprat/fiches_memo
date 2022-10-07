@@ -1,16 +1,16 @@
 # Table des matières
 
-- [Connexion authentifiée et sécurisée entre un client et un service](#connexion-authentifi-e-et-s-curis-e-entre-un-client-et-un-service)
-    + [Schéma d'une authentification authentifiée et sécurisée](#sch-ma-d-une-authentification-authentifi-e-et-s-curis-e)
+- [Connexion authentifiée et sécurisée entre un client et un service](#connexion-authentifiée-et-sécurisée-entre-un-client-et-un-service)
+    + [Schéma d'une authentification authentifiée et sécurisée](#schéma-d-une-authentification-authentifiée-et-sécurisée)
   * [La protection des secrets](#la-protection-des-secrets)
   * [Choix du facteur d'authentification](#choix-du-facteur-d-authentification)
   * [Architecture d'authentification et d'autorisation](#architecture-d-authentification-et-d-autorisation)
     + [Conclusion architecture](#conclusion-architecture)
-    + [Spécificité Administration du SI](#sp-cificit--administration-du-si)
+    + [Spécificité Administration du SI](#spécificité-administration-du-si)
       - [Poste d'administration](#poste-d-administration)
       - [Zone d'administration](#zone-d-administration)
-  * [Spécificité environnement Windows](#sp-cificit--environnement-windows)
-  * [Références](#r-f-rences)
+  * [Spécificité environnement Windows](#spécificité-environnement-windows)
+  * [Références](#références)
 
 # Connexion authentifiée et sécurisée entre un client et un service
 
