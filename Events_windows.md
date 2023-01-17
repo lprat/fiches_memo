@@ -1,0 +1,114 @@
+# Intersting - Event windows (source: forensic and plaso tag)
+
+ - Kb install
+   - 1022 [MsiInstaller]
+ - App install/update/remove
+   - 903-908 [Microsoft-Windows-Application-Experience]
+ - Execution
+   - 4688 avec command line: https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/component-updates/command-line-process-auditing 
+
+   - 17 [Microsoft-Windows-Program-Compatibility-Assistant]: detection execution
+   - 500 ou 505 [Microsoft-Windows-Application-Experience]: détection execution
+ - Installation de service/drivers
+   - 7045: https://www.manageengine.com/products/active-directory-audit/kb/system-events/event-id-7045.html
+   - 4697: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4697
+ - Login success
+   - 4624: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4624
+   - 4634: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4634
+   - 4648: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4648
+   - 4672: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4672
+   - 8002 [Microsoft-Windows-NTLM]
+ - logon fail
+   - 4625: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4625
+   - 4771: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4771
+   - 1148 [Windows-TerminalServices-RemoteConnectionManager]
+ - Session
+   - 22, 24, 25 [Microsoft-Windows-TerminalServices-LocalSessionManager]
+ - Change password
+   - 4723: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4723
+   - 4724: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4724
+   - 4794: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4794
+ - User add/change
+   - 4720: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4720
+   - 4781: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4781
+   - 4738: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4738
+   - 4732: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4732
+ - Computer account change:
+   - 4742 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4742
+ - Firewall
+   - 5156: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=5156
+   - 4950: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4950
+   - 2003-2006 [Microsoft-Windows-Windows Firewall]
+ - RDP
+   - 131 [Microsoft-Windows-RemoteDesktopServices-RdpCoreTS]
+   - 1147, 1149 [Windows-TerminalServices-RemoteConnectionManager]
+ - RPC
+   - 5712: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=5712
+ - Task scheduled
+   - 4698 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4698
+   - 4702 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4702
+   - 102, 129, 140, 141, 200, 201 [Microsoft-Windows--TaskScheduler]: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4698 
+
+ - Shutdown
+   - 13 [Microsoft-Windows-Kernel-General]
+ - System start
+   - 12 [Microsoft-Windows-Kernel-General]
+ - Powershell
+   - 4103, 4104, 400, 403, 600, 800,  5100 [Microsoft-Windows-powershell]
+   - 91 [Microsoft-Windows-WinRM]
+ - Events clear
+   - 1102: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=1102
+ - DCOM Access Refused
+   - 10016  [Microsoft-Windows-DistributedCOM] 
+ - GPO change
+   - 4719 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4719
+   - 4735 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4735
+   - 4739 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4739
+   - 4755 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4755
+ - Applocker
+   - 8005, 8006 [Microsoft-Windows-Applocker]
+ - Bits Job
+   - 3, 4, 59, 60 [Microsoft-Windows-Bits-Clients]
+ - net share
+   - 5140 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=5140
+   - 5142 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=5142
+ - Sid History
+   - 4765 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4765
+   - 4766 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4766
+ - WMIC
+   - 5861, 5860, 5858, 5859, 5857 [Microsoft-Windows-WMI-Activity]
+ - Privilege
+   - 4673: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4673
+   - 4798: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4798
+   - 4799: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4799
+   - 4798: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4798
+   - 4662: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4662
+   - 4908: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4908
+   - 4780: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4780
+   -
+ - Crash:
+   - 1000, 1005, 1015 [Application Error]
+   - 1002 [Application Hang]
+   - 1001 [Windows error reporting]
+ - Windows defender
+   - 1005-1010, 1016-1019, 1021, 1116, 1120 [Microsoft-Windows-Windows Defender]
+ - New device
+   - 1006 [Microsoft-Windows-Partition/Diagnostic]
+   - 43 [Microsoft-USB-USBHUB3]
+   - 219,400,410 [Microsoft-Windows-Kernel-Pnp]
+   - 3001-304, 3010, 3023 [Microsoft-Windows-CodeIntegrity]
+   - 2003, 2100, 2102[Microsoft-windows-DriversFramekorks-Usermode]
+ - Domaine controleur (scope DC)
+   - Auth
+     - 4776: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4776
+         - 4768: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4768
+         - 4769: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4769
+         - 4770: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4770
+   - Master Key backup
+     - 4692: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4692
+   - Ad replica
+     - 4928: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4928
+         - 4929: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4929
+ - Exchange
+    - 1 [Msexcahnge CmdletLogs]  
+
