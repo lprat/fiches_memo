@@ -6,7 +6,6 @@
    - 903-908 [Microsoft-Windows-Application-Experience]
  - Execution
    - 4688 avec command line: https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/component-updates/command-line-process-auditing 
-
    - 17 [Microsoft-Windows-Program-Compatibility-Assistant]: detection execution
    - 500 ou 505 [Microsoft-Windows-Application-Experience]: détection execution
  - Installation de service/drivers
@@ -17,6 +16,7 @@
    - 4634: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4634
    - 4648: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4648
    - 4672: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4672
+   - 4682: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4682
    - 8002 [Microsoft-Windows-NTLM]
  - logon fail
    - 4625: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4625
@@ -28,11 +28,13 @@
    - 4723: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4723
    - 4724: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4724
    - 4794: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4794
- - User add/change
+ - User add/change/lock
    - 4720: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4720
    - 4781: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4781
    - 4738: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4738
    - 4732: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4732
+   - 4740: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4740
+   - 4704: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4704
  - Computer account change:
    - 4742 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4742
  - Firewall
@@ -48,7 +50,6 @@
    - 4698 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4698
    - 4702 https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4702
    - 102, 129, 140, 141, 200, 201 [Microsoft-Windows--TaskScheduler]: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4698 
-
  - Shutdown
    - 13 [Microsoft-Windows-Kernel-General]
  - System start
@@ -85,7 +86,6 @@
    - 4662: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4662
    - 4908: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4908
    - 4780: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4780
-   -
  - Crash:
    - 1000, 1005, 1015 [Application Error]
    - 1002 [Application Hang]
@@ -101,14 +101,19 @@
  - Domaine controleur (scope DC)
    - Auth
      - 4776: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4776
-         - 4768: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4768
-         - 4769: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4769
-         - 4770: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4770
+     - 4768: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4768
+     - 4769: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4769
+     - 4770: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4770
    - Master Key backup
      - 4692: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4692
    - Ad replica
      - 4928: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4928
-         - 4929: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4929
+     - 4929: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4929
+   - GPO
+     - 5136: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4929
  - Exchange
     - 1 [Msexcahnge CmdletLogs]  
 
+
+Complement:
+  - **https://github.com/nsacyber/Event-Forwarding-Guidance**
