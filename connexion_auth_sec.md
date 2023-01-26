@@ -251,7 +251,7 @@ L'information logon type (contenu dans l'évènement 4624/4625 sur le serveur ci
 | ------|-----|
 | Password| <ul><li>Password sur le poste client</li><li>Password durant la communication si la communication n'est pas sécurisée</li><li>Password sur la machine cible</li></ul> |
 | NT hash | <ul><li>Password sur le poste client</li><li>HASH NT sur le poste client</li><li>Defi/réponse NTLM protocole (utilisé en version 1 ou 2 lors de l'utilisation de NT hash) si la communication n'est pas sécurisé (ce qui dans le protocole de base NTLM n'est pas le cas) qui permettra differentes attaques (relai/brute force/..)</li><li>Defi/réponse NTLM protocole (utilisé en version 1 ou 2 lors de l'utilisation de NT hash) transmis à la machine cible qui permettra différentes attaques (relai/brute force/..)</li></ul> |
-| Ticket kerberos|<ul><li>Password sur le poste client</li><li>HASH NT sur le poste client</li><li>Ticket Kerberos TGT sur le poste client</li><li>Ticket kerberos TGT sur le serveur cible si une délégation est activée</li></ul>|
+| Ticket kerberos|<ul><li>Password sur le poste client</li><li>HASH NT sur le poste client</li><li>Ticket Kerberos TGT sur le poste client</li><li>Ticket kerberos TGT sur le serveur cible si une délégation est activée</li><li>Ticket kerberos TGT par l'utilisation de faiblesses sur un compte engendrées par la désactivation de la préauthentication kerberos ou l'attribut SPN activé</li></ul>|
 
 
 |Services/outils | logon type | Exemple | Risque de vol de secrets |
