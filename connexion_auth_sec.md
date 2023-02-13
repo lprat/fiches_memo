@@ -1,3 +1,4 @@
+# Choix et gestion de l'authentification
 # Table des matières
 
 - [Connexion authentifiée et sécurisée entre un client et un service](#connexion-authentifiée-et-sécurisée-entre-un-client-et-un-service)
