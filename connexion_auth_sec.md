@@ -331,6 +331,7 @@ Références utilisées :
  - https://www.alteredsecurity.com/post/fantastic-windows-logon-types-and-where-to-find-credentials-in-them
  - https://www.sstic.org/2017/presentation/administration_en_silo/
  - https://www.sstic.org/2020/presentation/analyse_de_la_scurit_rdp__nla_quel_apport_pour_votre_scurit_/
+ - https://www.synacktiv.com/publications/windows-secrets-extraction-a-summary
 
 ## Références
  - https://www.ssi.gouv.fr/uploads/2021/10/anssi-guide-authentification_multifacteur_et_mots_de_passe.pdf
