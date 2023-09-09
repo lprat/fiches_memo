@@ -222,7 +222,7 @@ Pour intégrer la zone d'administration privilégier le protocole i802.1x, prise
 Toutes les informations ci-dessus sont issues de la documentation de l'ANSSI: https://www.ssi.gouv.fr/uploads/2018/04/anssi-guide-admin_securisee_si_v3-0.pdf
 
 ## Spécificité environnement Windows
-L'information logon type (contenu dans l'évènement 4624/4625 sur le serveur cible) permet d'identifier le type d'authentification réalisé et le risque d'avoir communiqué les identifiants en clair qui pourront être récupérable par une attaque sur la machine cible et rejoués.  
+L'information logon type (contenu dans l'évènement 4624/4625 sur le serveur cible) permet d'identifier le type d'authentification réalisé et le risque d'avoir communiqué les identifiants en clair qui pourront être récupérables par une attaque sur la machine cible et rejoués.  
 
 **Il faut bien comprendre que l'authentification Windows utilise seulement le "facteur de connaissance" avec deux grands protocoles d'authentification "NTLM" et "Kerberos". Seul l'utilisation de Kerberos avec l'utilisation d'algorithmes de cryptographique validés par les directives de l'ANSSI ainsi que l'utilisation des politiques d'authentification (limiter l'utilisation d'identifiant depuis des postes/machines spécifiques vers des serveurs identifiés) peuvent permettre de s'approcher d'une authentification forte (ex: pas d'utilisation d'algorithmes DES ou RC4).**
 
@@ -230,11 +230,11 @@ L'information logon type (contenu dans l'évènement 4624/4625 sur le serveur ci
 | ------|-----|-----|-----|-----|
 |0    |Utilisé par le système||     Utilisé lors du démarrage| Non |
 |2    |Interactive |    Password, SmartCard|    Quand un utilisateur se connecte à cette machine par la console | Oui |
-|3    |Network |  Password, ticket Kerberos, NT Hash| Quand un utilisateur ou un ordinateur se connecte à cette machine r à partir du réseau.| Non sauf si une délégation est activée sur le compte utilisateur utilisé |
+|3    |Network |  Password, ticket Kerberos, NT Hash| Quand un utilisateur ou un ordinateur se connecte à cette machine à partir du réseau.| Non sauf si une délégation est activée sur le compte utilisateur utilisé |
 |4    |Batch |    Password | Quand une tache planifiée est lancée par un utilisateur spécifique | Oui |
 |5    |Service |  Password | Quand un service est lancé par un utilisateur spécifique | Oui |
 |7    |Unlock|    Password | Quand un utilisateur déverrouille sa session | Non|
-|8    |NetworkCleartext |     Password| Quand un utilisateur passe ses identifiants en clair au service présent sur cette machine auquel il veut accèder | Oui |
+|8    |NetworkCleartext |     Password| Quand un utilisateur passe ses identifiants en clair au service présent sur cette machine où il veut accèder | Oui |
 |9    |NewCredentials | Password | Quand un utilisateur utilise la commande "runas" avec l'option "/netonly" pour se connecter à une ressource réseau avec un autre identifiant. | Oui |
 |10 |RemoteInteractive |      Password, SmartCard |   Quand un utilisateur se connecte sur cette machine à distance avec RDP | Oui |
 |11 |CachedInteractive |      Password|   Quand un utilisateur se connecte à cette machine par la console avec un compte du domaine mais que la machine n'est pas connectée au réseau de l'entreprise. L'authentification utilise les informations dans le cache. | Oui|
@@ -244,14 +244,14 @@ L'information logon type (contenu dans l'évènement 4624/4625 sur le serveur ci
 
 | Type d'authentificateur |Intérêt du vol|
 | ------|-----|
-| Password|L'identifiant est intéressant pour un attaquant seulement si : <ul><li>il est utilisé à d'autre endroit (rejeu de mot de passe)</li><li>le compte permet d'accéder à plusieurs ressources</li></ul>|
+| Password|L'identifiant est intéressant pour un attaquant seulement si : <ul><li>il est utilisé à d'autres endroits (rejeu de mot de passe)</li><li>le compte permet d'accéder à plusieurs ressources</li></ul>|
 | NT hash|Le NT Hash est intéressant pour un attaquant seulement si: <ul><li>son cassage permet d'identifier un mot de passe utilisé à d'autre endroit (rejeu de mot de passe)</li><li>le NT hash permet d'accéder à plusieurs ressources (pass-the-hash)</li></ul>|
 | Ticket Kerberos| Le ticket Kerberos est intéressant pour un attaquant seulement si: <ul><li>le ticket Kerberos TGT permet d'accéder à plusieurs ressources (pass-the-ticket)</li></ul> Le vol d'un Ticket TGS n'a pas réellement de sens (car si l'attaquant le vol sur le poste client alors il peut voler directement le mot de passe ou le TGT; et s'il le vol sur la machine cible, cela veut dire qu'il a déjà accès à cette machine avec des privilèges|
 
-| Type d'authentificateur | Élément récupérable par un attaquant selon sa position |
+| Type d'authentificateur | Éléments récupérables par un attaquant selon sa position |
 | ------|-----|
 | Password| <ul><li>Password sur le poste client</li><li>Password durant la communication si la communication n'est pas sécurisée</li><li>Password sur la machine cible</li></ul> |
-| NT hash | <ul><li>Password sur le poste client</li><li>HASH NT sur le poste client</li><li>Defi/réponse NTLM protocole (utilisé en version 1 ou 2 lors de l'utilisation de NT hash) si la communication n'est pas sécurisé (ce qui dans le protocole de base NTLM n'est pas le cas) qui permettra differentes attaques (relai/brute force/..)</li><li>Defi/réponse NTLM protocole (utilisé en version 1 ou 2 lors de l'utilisation de NT hash) transmis à la machine cible qui permettra différentes attaques (relai/brute force/..)</li></ul> |
+| NT hash | <ul><li>Password sur le poste client</li><li>HASH NT sur le poste client</li><li>Defi/réponse NTLM protocole (utilisé en version 1 ou 2 lors de l'utilisation de NT hash) si la communication n'est pas sécurisée (ce qui dans le protocole de base NTLM n'est pas le cas) qui permettra differentes attaques (relai/brute force/..)</li><li>Defi/réponse NTLM protocole (utilisé en version 1 ou 2 lors de l'utilisation de NT hash) transmis à la machine cible qui permettra différentes attaques (relai/brute force/..)</li></ul> |
 | Ticket kerberos|<ul><li>Password sur le poste client</li><li>HASH NT sur le poste client</li><li>Ticket Kerberos TGT sur le poste client</li><li>Ticket kerberos TGT sur le serveur cible si une délégation est activée</li><li>Ticket kerberos TGT par l'utilisation de faiblesses sur un compte engendrées par la désactivation de la préauthentication kerberos ou l'attribut SPN activé</li></ul>|
 
 
@@ -265,13 +265,13 @@ L'information logon type (contenu dans l'évènement 4624/4625 sur le serveur ci
 |Share Admin 2eme cas|3 puis 2|"psexec -u" avec un identifiant different de l'utilisateur connecté| Oui|
 |Creation d'une tache planifiée avec un utilisateur spécifique|4|Creation d'une tache planifiée pour la sauvegarde sur un serveur avec un identifiant domaine afin qui puisse transmettre la sauvegarde sur un partage du SI| Oui|
 |Creation d'un service lancé par un utilisateur spécifique (diffèrent du système local)|5|Creation d'un service avec un utilisateur du domaine afin qu'il puisse accéder à certaines ressources du SI| Oui|
-|SSH|8|ssh qui utilise une authentication login/password basé sur l'AD ou compte windows local| Oui|
-|FTP|8|FTP qui utilise une authentication login/password basé sur l'AD ou compte windows local| Oui|
-|IIS|8|IIS qui utilise une authentication login/password basé sur l'AD ou compte windows local (hors IWA qui ne demande pas de login/passwd)| Oui|
-|Webmail exchange OWA|8|OWA qui utilise une authentication login/password basé sur l'AD ou compte windows local (hors IWA qui ne demande pas de login/passwd)| Oui|
-|Sharepoint|8|Sharepoint qui utilise une authentication login/password basé sur l'AD ou compte windows local (hors IWA qui ne demande pas de login/passwd)| Oui|
-|Sharepoint|8|Sharepoint qui utilise une authentication login/password basé sur l'AD ou compte windows local (hors IWA qui ne demande pas de login/passwd)| Oui|
-|MS Exchange ActiveSync|8|MS Exchange ActiveSync qui utilise une authentication login/password basé sur l'AD| Oui|
+|SSH|8|ssh qui utilise une authentication login/password basée sur l'AD ou compte windows local| Oui|
+|FTP|8|FTP qui utilise une authentication login/password basée sur l'AD ou compte windows local| Oui|
+|IIS|8|IIS qui utilise une authentication login/password basée sur l'AD ou compte windows local (hors IWA qui ne demande pas de login/passwd)| Oui|
+|Webmail exchange OWA|8|OWA qui utilise une authentication login/password basée sur l'AD ou compte windows local (hors IWA qui ne demande pas de login/passwd)| Oui|
+|Sharepoint|8|Sharepoint qui utilise une authentication login/password basée sur l'AD ou compte windows local (hors IWA qui ne demande pas de login/passwd)| Oui|
+|Sharepoint|8|Sharepoint qui utilise une authentication login/password basée sur l'AD ou compte windows local (hors IWA qui ne demande pas de login/passwd)| Oui|
+|MS Exchange ActiveSync|8|MS Exchange ActiveSync qui utilise une authentication login/password basée sur l'AD| Oui|
 |RunAs|9|Commande "runas /netonly"|Oui|
 |RDP  |10|connexion avec le bureau à distance vers une machine à administrer avec des identifiants du domaine| Oui|
 |RDP avec option NLA    |3 puis 2|connexion avec le bureau à distance vers une machine à administrer avec des identifiants du domaine| Oui|
