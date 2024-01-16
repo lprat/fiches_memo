@@ -226,6 +226,8 @@ L'information logon type (contenu dans l'évènement 4624/4625 sur le serveur ci
 
 **Il faut bien comprendre que l'authentification Windows utilise seulement le "facteur de connaissance" avec deux grands protocoles d'authentification "NTLM" et "Kerberos". Seul l'utilisation de Kerberos avec l'utilisation d'algorithmes de cryptographique validés par les directives de l'ANSSI ainsi que l'utilisation des politiques d'authentification (limiter l'utilisation d'identifiant depuis des postes/machines spécifiques vers des serveurs identifiés) peuvent permettre de s'approcher d'une authentification forte (ex: pas d'utilisation d'algorithmes DES ou RC4).**
 
+**!!A partir de windows 2016 et windows 10 version 1604, il est possible d'utiliser de l'authentification par certificat via kerberos: https://learn.microsoft.com/fr-fr/windows-server/security/kerberos/whats-new-in-kerberos-authentication!!**
+
 |Logon  | Type Name     | Type d'authentificateur |   Description | Risque de vol de secrets |
 | ------|-----|-----|-----|-----|
 |0    |Utilisé par le système||     Utilisé lors du démarrage| Non |
